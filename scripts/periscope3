@@ -84,7 +84,7 @@ def main():
         exit()
             
     if not args:
-        print(parser.print_help())
+        parser.print_help()
         exit()
 
     if options.queries: args += options.queries
