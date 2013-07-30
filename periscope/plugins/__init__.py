@@ -22,8 +22,8 @@
 
 from .OpenSubtitles import OpenSubtitles
 from .Subtitulos import Subtitulos
-#from .Podnapisi import Podnapisi
-#from .TheSubDB import TheSubDB
+#from .Podnapisi import Podnapisi  # Podnapisi plug-in not working currently (on-site changes)
+from .TheSubDB import TheSubDB
 #from .BierDopje import BierDopje
 #from .SubsWiki import SubsWiki
 #from .LegendasTV import LegendasTV

@@ -67,6 +67,7 @@ class TheSubDB(SubtitleDatabase.SubtitleDB):
         try : 
             page = urllib.request.urlopen(req, timeout=5)
             content = page.readlines()
+            content[0] = content[0].decode('utf8')
             plugin_langs = content[0].split(',')
             print(content[0])
             for lang in plugin_langs :

@@ -82,11 +82,13 @@ class Podnapisi(SubtitleDatabase.SubtitleDB):
         searchurl = self.host + self.search + urllib.parse.urlencode(params)
         content = self.downloadContent(searchurl, 10)
         
-        # Workaround for the Beautifulsoup 3.1 bug
-        content = content.replace("scr'+'ipt", "script")
         soup = BeautifulSoup(content)
         for subs in soup("tr", {"class":"a"}) + soup("tr", {"class": "b"}):
-            releases = subs.find("span", {"class" : "opis"}).find("span")["title"].lower().split(" ")
+            spans = subs.find("span", {"class" : "opis"})
+            log.debug("Spans : %s"%spans)
+            log.debug("Token : %s"%token)
+            releases = spans.find("span")["title"].lower().split(" ")
+            # the result page no longer contains "title" tag, so this just does not work now
             if token.lower() in releases:
                 links = subs.findAll("a")
                 lng = subs.find("a").find("img")["src"].rsplit("/", 1)[1][:-4]
