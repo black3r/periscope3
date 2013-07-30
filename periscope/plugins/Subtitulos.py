@@ -47,7 +47,7 @@ class Subtitulos(SubtitleDatabase.SubtitleDB):
         super(Subtitulos, self).__init__(langs=None,revertlangs=LANGUAGES)
         #http://www.subtitulos.es/dexter/4x01
         self.host = "http://www.subtitulos.es"
-        self.release_pattern = re.compile("Versi&oacute;n (.+) ([0-9]+).([0-9])+ megabytes")
+        self.release_pattern = re.compile("Versión (.+) ([0-9]+).([0-9])+ megabytes")
         
 
     def process(self, filepath, langs):
@@ -73,8 +73,13 @@ class Subtitulos(SubtitleDatabase.SubtitleDB):
         soup = BeautifulSoup(content)
         for subs in soup("div", {"id":"version"}):
             version = subs.find("p", {"class":"title-sub"})
-            subteams = self.release_pattern.search("%s"%version.contents[1]).group(1).lower()            
-            teams = set(teams)
+            subteams = self.release_pattern.search("%s"%version.contents[1]).group(1).lower()
+            nteams = set()
+            for team in teams:
+              if (team[0:4] == 'x264' or team[0:4] == 'h264' or team[0:4] == 'xvid'):
+                nteams.add(team[5:])
+              nteams.add(team)
+            teams = nteams 
             subteams = self.listTeams([subteams], [".", "_", " ", "/"])
             
             log.debug("Team from website: %s" %subteams)
