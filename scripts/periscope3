@@ -26,6 +26,7 @@ import mimetypes
 from optparse import OptionParser
 import logging
 import periscope
+from sys import exit
 
 log = logging.getLogger(__name__)
 
