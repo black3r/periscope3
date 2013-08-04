@@ -19,24 +19,24 @@
 #    You should have received a copy of the GNU General Public License
 #    along with emesene; if not, write to the Free Software
 #    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-from .OpenSubtitles import OpenSubtitles
-from .Subtitulos import Subtitulos
-#from .Podnapisi import Podnapisi  # Podnapisi plug-in not working currently (on-site changes)
-from .TheSubDB import TheSubDB
-#from .BierDopje import BierDopje
-#from .SubsWiki import SubsWiki
-#from .LegendasTV import LegendasTV
-#from .SubDivX import SubDivX
-
 #from SubtitleSource import SubtitleSource # require a key in the config file
 
-# Not working anymore (download fails)
-#from SubScene import SubScene
+## Working plug-ins:
+from .OpenSubtitles import OpenSubtitles
+from .Subtitulos import Subtitulos
+from .TheSubDB import TheSubDB
+from .SubsWiki import SubsWiki
+from .Addic7ed import Addic7ed
+from .Podnapisi2 import Podnapisi # not really sure if working, needs proper testing
 
-# Don't want to be included
-#from .Addic7ed import Addic7ed
-#from .TvSubtitles import TvSubtitles
+## Currently not working (untested yet)
+#from .SubScene import SubScene
 
-# API not working
-#from Podnapisi2 import Podnapisi
+## Currently not working (code broken / unfinished)
+#from .Podnapisi import Podnapisi  # Podnapisi plug-in not working currently (on-site changes)
+#from .TvSubtitles import TvSubtitles # Unfinished/Not working plug-in
+#from .SubDivX import SubDivX # Broken & Not worth it (only espanol subtitles and can't really search well)
+
+## Currently not working (site faults)
+#from .LegendasTV import LegendasTV # LegendasTV plug-in not working currently (site offline + requires username/password)
+#from .BierDopje import BierDopje # BierDopje plug-in not working currently (need API key)
