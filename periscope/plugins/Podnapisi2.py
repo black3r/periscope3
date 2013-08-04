@@ -70,15 +70,15 @@ class Podnapisi(SubtitleDatabase.SubtitleDB):
         logging.debug("got nonce %s" %nonce)
         logging.debug("hashes are %s" %[moviehash])
         username = 'getmesubs'
-        password = '99D31$$'
+        password = '99D31$$'.encode('utf-8')
         hash = md5()
         hash.update(password)
-        password = hash.hexdigest()
+        password = hash.hexdigest().encode('utf-8')
 
         hash = sha256()
         hash.update(password)
-        hash.update(nonce)
-        password = hash.hexdigest()
+        hash.update(nonce.encode('utf-8'))
+        password = hash.hexdigest().encode('utf-8')
         print(username)
         print(password)
         self.server.authenticate(token, username, password)
