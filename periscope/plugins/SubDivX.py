@@ -78,7 +78,7 @@ class SubDivX(SubtitleDatabase.SubtitleDB):
         '''Return the direct link of the subtitle'''
         content = self.downloadContent(result_url, timeout=5)
         soup = BeautifulSoup(content)
-        return soup.find('a', {'class': 'detalle_link',
+        return soup.find('a', {'class': 'link1',
                                'href': re.compile("bajar")}).get('href')
 
     def _get_result_rating(self, result, extra):
