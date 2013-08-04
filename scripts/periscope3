@@ -58,13 +58,13 @@ def main():
     if not options.cache_folder:
         try:
             import xdg.BaseDirectory as bd
-            options.cache_folder = os.path.join(bd.xdg_config_home, "periscope")
+            options.cache_folder = os.path.join(bd.xdg_config_home, "periscope3")
         except:
             home = os.path.expanduser("~")
             if home == "~":
                 log.error("Could not generate a cache folder at the home location using XDG (freedesktop). You must specify a --cache-config folder where the cache and config will be located (always use the same folder).")
                 exit()
-            options.cache_folder = os.path.join(home, ".config", "periscope")
+            options.cache_folder = os.path.join(home, ".config", "periscope3")
 
     
     periscope_client = periscope.Periscope(options.cache_folder)
