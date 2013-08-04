@@ -77,7 +77,14 @@ class SubsWiki(SubtitleDatabase.SubtitleDB):
         soup = BeautifulSoup(page)
         for subs in soup("td", {"class":"NewsTitle"}):
             subteams = subs.findNext("b").string.lower()            
-            teams = set(teams)
+	    
+            nteams = set()
+            for team in teams:
+              if (team[0:4] == 'x264' or team[0:4] == 'h264' or team[0:4] == 'xvid'):
+                nteams.add(team[5:])
+              nteams.add(team)
+            teams = nteams
+
             subteams = self.listTeams([subteams], [".", "_", " ", " y "])
             
             #logging.debug("Team from website: %s" %subteams)
@@ -97,7 +104,7 @@ class SubsWiki(SubtitleDatabase.SubtitleDB):
 
                 link = statusTD.findNext("td").find("a")["href"]
 
-                if status == "Completed" and subteams.issubset(teams) and (not langs or lang in langs) :
+                if status == "Completado" and subteams.issubset(teams) and (not langs or lang in langs) :
                     result = {}
                     result["release"] = "%s.S%.2dE%.2d.%s" %(name.replace("-", ".").title(), int(season), int(episode), '.'.join(subteams)
     )
