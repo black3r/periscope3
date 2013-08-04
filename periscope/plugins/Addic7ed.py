@@ -93,11 +93,7 @@ class Addic7ed(SubtitleDatabase.SubtitleDB):
 			logging.info("TimeOut : %s" %inst)
 			return sublinks
 		
-		#HTML bug in addic7ed
-		content = page.read()
-		content = content.replace("The safer, easier way", "The safer, easier way \" />")
-		
-		soup = BeautifulSoup(content)
+		soup = BeautifulSoup(page)
 		for subs in soup("td", {"class":"NewsTitle", "colspan" : "3"}):
 			if not self.release_pattern.match(str(subs.contents[1])):
 				continue
@@ -118,7 +114,7 @@ class Addic7ed(SubtitleDatabase.SubtitleDB):
 			#logging.debug("[Addic7ed] Language : %s - lang : %s" %(langs_html, lang))
 			
 			statusTD = langs_html.findNext("td")
-			status = statusTD.find("strong").string.strip()
+			status = statusTD.find("b").string.strip()
 
 			# take the last one (most updated if it exists)
 			links = statusTD.findNext("td").findAll("a")
